@@ -59,13 +59,14 @@ Route::delete('cats/{cat}',function(Furbook\Cat $cat){
  /*  return redirect('cats');
 });
 */
+Route::resource('cat','CatController');
 /*list cats*/
-Route::get('/cats', function () {
+/*Route::get('/cats', function () {
 	$cats = Furbook\Cat::all();
      return view('cats/index')->with('cats',$cats);
-});
+});*/
 //display list cats of breed name
-Route::get('/cats/breeds/{name}', function ($name) {
+Route::get('/cat/breeds/{name}', function ($name) {
    $breed=Furbook\Breed::with('cats')
    ->where('name',$name)
    ->first();
@@ -75,52 +76,54 @@ Route::get('/cats/breeds/{name}', function ($name) {
    ->with('cats',$breed->cats);
 });
 //display inf cat
-Route::get('/cats/{id}', function ($id) {
+/*Route::get('/cats/{id}', function ($id) {
 	 $cat = Furbook\Cat::find($id);
    return view('cats.show')->with('cat', $cat);
    // echo sprintf('Cat #'.$id);
-})->where('id','[0-9]+');
+})->where('id','[0-9]+');*/
 //create cats 
-Route::get('/cats/create', function () {
+/*Route::get('/cats/create', function () {
 	return view('cats.create');
 	//dd(Request::all());
 	//dd(Input::all());
 	
-});
-Route::post('/cats', function () {
+});*/
+/*Route::post('/cats', function () {
 	$cat= Furbook\Cat::create(Input::all());
    return redirect('cats/'.$cat->id)->with('cat',$cat)
    ->withSuccess('create cat success');
     echo 'du lieu moi duoc gui len';
 });
-
+*/
 
 //update
 
-Route::get('/cats/{id}/edit', function ($id) {
+/*Route::get('/cats/{id}/edit', function ($id) {
 	$cat= Furbook\Cat::find($id);
 	return view('cats.edit')->with('cat',$cat);
     echo sprintf('edit cats'.$id);
 });
 Route::put('/cats/{id}', function ($id) {
 	
-	$cat= Furbook\Cat::find($id)
+	$cat= Furbook\Cat::find($id);
 	//dd(Input::all());
-	->first();
+
 	$cat->update(Input::all());
 	return redirect('cats/'.$cat->id)
 	->withSuccess('update cat success');
      //echo 'du lieu update duoc gui len';
-});
+});*/
 //delete
-Route::get('/cats/{id}/delete', function ($id) {
-	$cat=Furbook\Cat::find($id)->first();
+/*Route::get('/cats/{id}/delete', function ($id) {
+	$id=Input::post('id');
+	$cat=Furbook\Cat::find($id);
 	$cat->delete();
 	return redirect('cats')
+	->route('cat.show', $cat->id)
 	->withSuccess('delete cat success');
     
 });
 Route::delete('/cats/{id}', function ($id) {
     echo sprintf('delete cats'.$id);
-});
+});*/
 
