@@ -127,3 +127,7 @@ Route::delete('/cats/{id}', function ($id) {
     echo sprintf('delete cats'.$id);
 });*/
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

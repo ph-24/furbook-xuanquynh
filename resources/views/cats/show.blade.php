@@ -10,10 +10,10 @@
 	<form id="form_delete" action="{{route('cat.destroy',$cat->id)}}" method="POST">
 		<input type="hidden" name="_method" value="DELETE">
     	<input type="hidden" name="_token" value="{{ csrf_token() }}">
-		<!-- <a href="javascript:document.getElementById('form_delete').submit()">
+		<a href="javascript:document.getElementById('form_delete').submit()">
 				<span class="glyphicon glyphicon-trash"></span>
 		Delete
-		</a> -->
+		</a> 
 	</form>
 	<p>Last edited: {{ $cat->updated_at->diffForHumans() }}</p>
 @stop

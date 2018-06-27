@@ -64,5 +64,13 @@ function scopeFunctionName
 
 8. Collection
 - ngoài trả về kết quả, còn kèm theo các funciton helper hỗ trợ ng dùng thao tác với dữ liệu trc khi hiển thị.
-
+--------------------------------------------------------------------
+AUTH AND SECURITY
+1. Auth users
+* xem tất cả các route hiện có:
+php artisan route:list
+* Cấu hình config/auth.php+user model
+	- các route Cat->auth.
+	- route cat.edit->user: admin  hoặc own của cat.
+	- route cat.destroy->admin.
 ?>

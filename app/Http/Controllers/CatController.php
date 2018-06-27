@@ -3,6 +3,7 @@
 namespace Furbook\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Furbook\Http\Requests\CatRequest;
 use Furbook\Cat;
 use Validator;
 class CatController extends Controller
@@ -37,7 +38,7 @@ class CatController extends Controller
     public function store(Request $request)
     {
        /* dd($request->all());*/
-        /*$validator=$request->validate([
+        $validator=$request->validate([
             'name'=>'required|max:255',
             'date_of_birth'=>'required|date_format:"Y/m/d"',
             'breed_id'=>'required|numeric'
@@ -47,8 +48,9 @@ class CatController extends Controller
             'date_format'=>'Cột :attribute có định dạng Y/mm/dd .',
             'numeric'=>'Cột :attribute phải là kiểu số .'
         ]
-        );*/
-        $validator=Validator::make($request->all(),[
+        );
+        //Cách 2
+        /*$validator=Validator::make($request->all(),[
            'name'=>'required|max:255',
             'date_of_birth'=>'required|date_format:"Y/m/d"',
             'breed_id'=>'required|numeric'
@@ -64,7 +66,7 @@ class CatController extends Controller
             ->route('cat.create')
             ->withErrors($validator)
             ->withInput();
-        }
+        }*/
         //insert cat
         $cat= Cat::create($request->all());
         //redirect back show cat
@@ -101,11 +103,11 @@ class CatController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  Furbook\Http\Requests\CatRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CatRequest $request, $id)
     {
         $cat= Cat::find($id);
         $cat->update($request->all());
