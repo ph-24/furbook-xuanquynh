@@ -37,22 +37,27 @@ class CatController extends Controller
     public function store(Request $request)
     {
        /* dd($request->all());*/
-        $validator=$request->validate([
-            'name'=>'required|size:255',
-            'date_of_birth'=>'required|date_format:"yy/mm/dd"',
-            'breed_id'=>'required|numeric'
-        ],
-        [   'required'=>'Cột: attribute là bắt buộc.',
-            'size'=>'Cột: attribute độ dài phải nhỏ hơn 255 .',
-            'date_format'=>'Cột: attribute có định dạng yy/mm/dd .',
-            'numeric'=>'Cột: attribute phải là kiểu số .',
-        ]
-        );
-       /* $validator=Validator::make($request->all(),[
-            'name'=>'required|size:255',
+        /*$validator=$request->validate([
+            'name'=>'required|max:255',
             'date_of_birth'=>'required|date_format:"Y/m/d"',
             'breed_id'=>'required|numeric'
-        ]);*/
+        ],
+        [   'required'=>'Cột :attribute là bắt buộc.',
+            'max'=>'Cột :attribute độ dài phải nhỏ hơn 255 .',
+            'date_format'=>'Cột :attribute có định dạng Y/mm/dd .',
+            'numeric'=>'Cột :attribute phải là kiểu số .'
+        ]
+        );*/
+        $validator=Validator::make($request->all(),[
+           'name'=>'required|max:255',
+            'date_of_birth'=>'required|date_format:"Y/m/d"',
+            'breed_id'=>'required|numeric'
+        ],
+        [   'required'=>'Cột :attribute là bắt buộc.',
+            'max'=>'Cột :attribute độ dài phải nhỏ hơn 255 .',
+            'date_format'=>'Cột :attribute có định dạng Y/mm/dd .',
+            'numeric'=>'Cột :attribute phải là kiểu số .'
+        ]);
         //if data invalid
         if($validator->fails()){
             return redirect()
